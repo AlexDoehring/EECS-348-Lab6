@@ -1,19 +1,20 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
+#include <fstream> //included for file I/O
+#include <sstream> //included for string input
+#include <string> //included for string library
 
-using namespace std;
+using namespace std; //using standard namespace
 
-const int MAX_SIZE = 100;
+const int MAX_SIZE = 100; //Initializing global variable MAX_SIZE to 100
 
+//Defining Function Prototypes
 int readFile(string filename, int matrix1[][MAX_SIZE], int matrix2[][MAX_SIZE]);
 void printMatrix(int matrix[][MAX_SIZE], int size);
 void addMatrix(int mat1[][MAX_SIZE], int mat2[][MAX_SIZE], int ansMat[][MAX_SIZE], int size);
 void multMatrix(int mat1[][MAX_SIZE], int mat2[][MAX_SIZE], int ansMat[][MAX_SIZE], int size);
 void subMatrix(int mat1[][MAX_SIZE], int mat2[][MAX_SIZE], int ansMat[][MAX_SIZE], int size);
 
-
+//Main code
 int main() {
     string filename = "matrix_input.txt";
     int matrix1[MAX_SIZE][MAX_SIZE];
@@ -41,17 +42,19 @@ int main() {
     return 0;
 }
 
+//Takes a file and two matrices, reads from the file and initializes each matrix
 int readFile(string fileName, int matrix1[][MAX_SIZE], int matrix2[][MAX_SIZE]) {
-    ifstream file(fileName);
-    string line;
-    getline(file, line);
-    int size = stoi(line);
-    
+    ifstream file(fileName); //initializing input file stream
+    string line; //initializes variable that will hold each line as a string
+    getline(file, line); //reads in the size variable
+    int size = stoi(line); //converts the size from a string to an int
+
+    // loops through the file for the first matrix and initializes it
     for(int i = 0; i < size; i++) {
         getline(file, line);
-        stringstream s(line);
+        stringstream s(line); //initializes string stream variable which makes splitting the string up easier
         for(int j = 0; j < size; j++) {
-            s >> matrix1[i][j];
+            s >> matrix1[i][j]; //takes each word from the stringstream and sets each matrix value to the respective word
         }
     }
 
